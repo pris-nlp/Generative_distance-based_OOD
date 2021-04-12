@@ -7,7 +7,7 @@ A deep generative distance-based model with Mahalanobis distance  to detect OOD 
 
 The architecture of the proposed model:
 
-![](https://github.com/ChestnutWYN/Generative_distance-based_OOD/blob/main/img/model.jpg)
+![](https://github.com/pris-nlp/Generative_distance-based_OOD/blob/main/img/model.jpg)
 
 ## Dependencies
 
