@@ -195,7 +195,7 @@ python3 experiment.py --dataset SNIPS --proportion 50 --mode test --setting msp_
    </tr>
    <tr>
 <td>GDA+Mahalanobis distance</td>
-<td  <b>89.2*</b></td>
+<td>  <b>89.2*</b></td>
 <td> <b>87.4*</b></td>
 <td> <b>83.2</b></td>
 <td><b>78.5* </b></td>
@@ -228,7 +228,7 @@ python3 experiment.py --dataset SNIPS --proportion 50 --mode test --setting msp_
 <td>unseen </td>
 </tr>
 <tr>
-<td>GDA+Mahalanobisdistance </td>
+<td>GDA+Mahalanobis distance </td>
 <td>80.2 </td>
 <td>80.1</td>
 <td> 84 </td>
