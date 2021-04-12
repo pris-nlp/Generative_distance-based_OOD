@@ -28,15 +28,15 @@ pip install -r requirements.txt
   &ensp;&ensp; When only training model, there is no need to provide `setting` parameters.
 
 #### 2. Predict (only):
-- LOF
+- **LOF**
 ```
 python3 experiment.py --dataset <dataset> --proportion <proportion> --mode test --setting lof --model_dir <model_dir>
 ```
-- GDA
+- **GDA**
 ```
 python3 experiment.py --dataset <dataset> --proportion <proportion> --mode test --setting gda_lsqr_auto --model_dir <model_dir>
 ```
-- MSP
+- **MSP**
 ```
 python3 experiment.py --dataset <dataset> --proportion <proportion> --mode test --setting msp --model_dir <model_dir>
 ```
@@ -57,7 +57,7 @@ python3 experiment.py --dataset <dataset> --proportion <proportion> --mode both 
 python3 experiment.py --dataset SNIPS --proportion 50 --mode test --setting msp_0.5 msp_0.6 msp_0.7 msp_0.8 msp_0.9 --model_dir ./outputs/SNIPS-50-06112350 --seen_classes AddToPlaylist BookRestaurant PlayMusic RateBook
 ```
 ## Parameters
-The parameters that must be specified:
+**The parameters that must be specified:**
 - `dataset`, required, The dataset to use, `ATIS` or `SNIPS` or `CLINC`.
 - `proportion`, required, The proportion of seen classes, range from `0` to `100`.
 - `seen_classes`, optional, The random seed to randomly choose seen classes.(e.g.`--seen_classes SearchCreativeWork RateBook`)
@@ -69,7 +69,7 @@ The parameters that must be specified:
     - `msp`: using MSP for predicting.
 - `model_dir`, The directory contains model file (.h5), requried when test only.
 
-The parameters that have default values (In general, it can stay fixed):
+**The parameters that have default values (In general, it can stay fixed):**
 - `gpu_device`, default=1
 - `output_dir`, default="./outputs"
 - `embedding_file`,default="glove.6B.300d.txt"
