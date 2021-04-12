@@ -134,6 +134,21 @@ python3 experiment.py --dataset SNIPS --proportion 50 --mode test --setting msp_
 				<td>-</td>
 				<td> -</td>
     </tr>
+<tr>
+				<td>DOC(softmax) </td>
+				<td>72.8</td>
+				<td>65.7</td>
+				<td>61.8</td>
+				<td>63.6 </td>
+				<td>63.3 </td>
+				<td>38.7 </td>
+				<td>-</td>
+				<td> -</td>
+				<td> -</td>
+				<td>- </td>
+				<td>-</td>
+				<td> -</td>
+</tr>
        <tr>
 <td> LOF(softmax) </td>
 <td> 76.0</td>
@@ -148,6 +163,21 @@ python3 experiment.py --dataset SNIPS --proportion 50 --mode test --setting msp_
 <td> 88.4</td>
 <td> 77.6</td>
 <td> 57.5</td>
+   </tr>
+<tr>
+	<td> LOF(LMCL) </td>
+	<td> 79.2</td>
+	<td> 84.1 </td>
+	<td>78.8</td>
+	<td> 68.6 </td>
+	<td>63.4</td>
+	<td> 39.6</td>
+	<td> 91.3 </td>
+	<td>83.3</td>
+	<td> 62.8</td>
+	<td> 88.7</td>
+	<td> 78.9</td>
+	<td> 56.7</td>
    </tr>
 <td>GDA+Euclidean distance </td>
 <td>85.6</td>
