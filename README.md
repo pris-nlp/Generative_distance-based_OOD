@@ -34,7 +34,7 @@ python3 experiment.py --dataset <dataset> --proportion <proportion> --mode test 
 ```
 - **GDA**
 ```
-python3 experiment.py --dataset <dataset> --proportion <proportion> --mode test --setting gda_lsqr_auto --model_dir <model_dir>
+python3 experiment.py --dataset <dataset> --proportion <proportion> --mode test --setting gda_lsqr_800 --model_dir <model_dir>
 ```
 - **MSP**
 ```
@@ -65,7 +65,6 @@ python3 experiment.py --dataset SNIPS --proportion 50 --mode test --setting msp_
 - `setting`, required, The settings to detect ood samples, e.g.
     - `lof`：using LOF for predicting.
     - `gda_lsqr_800`：using GDA for predicting, using `lsqr` for `solver`, and the threshold is 800 (Mahalanobis distance).
-    - `gda_lsqr_auto`：using GDA for predicting, using `lsqr` for `solver`, and the threshold is automatically inferred from training data (Mahalanobis distance).
     - `msp`: using MSP for predicting.
 - `model_dir`, The directory contains model file (.h5), requried when test only.
 
