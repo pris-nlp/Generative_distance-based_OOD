@@ -153,37 +153,3 @@ def get_test_info(texts: pd.Series,
         df.to_csv(os.path.join(output_dir, "test_info.csv"))
     
     return df
-
-def estimate_best_threshold(seen_m_dist: np.ndarray,
-                            unseen_m_dist: np.ndarray) -> float:
-    """
-    Given mahalanobis distance for seen and unseen instances in valid set, estimate
-    a best threshold (i.e. achieving best f1 in valid set) for test set.
-    """
-    lst = []
-    for item in seen_m_dist:
-        lst.append((item, "seen"))
-    for item in unseen_m_dist:
-        lst.append((item, "unseen"))
-    lst = sorted(lst, key=lambda item: item[0])
-
-    threshold = 0.
-    tp, fp, fn = len(unseen_m_dist), len(seen_m_dist), 0
-    def compute_f1(tp, fp, fn):
-        p = tp / (tp + fp + 1e-10)
-        r = tp / (tp + fn + 1e-10)
-        return (2 * p * r) / (p + r + 1e-10)
-    f1 = compute_f1(tp, fp, fn)
-
-    for m_dist, label in lst:
-        if label == "seen":  # fp -> tn
-            fp -= 1
-        else:  # tp -> fn
-            tp -= 1
-            fn += 1
-        if compute_f1(tp, fp, fn) > f1:
-            f1 = compute_f1(tp, fp, fn)
-            threshold = m_dist + 1e-10
-
-    print("estimated threshold:", threshold)
-    return threshold
