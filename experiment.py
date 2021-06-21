@@ -247,7 +247,7 @@ if args.mode in ["test", "both"]:
             f, f_seen, f_unseen = get_score(cm)
         elif ood_method == "gda":
             solver = setting_fields[1] if len(setting_fields) > 1 else "lsqr"
-            threshold = setting_fields[2] if len(setting_fields) > 2 else "auto"
+            threshold = setting_fields[2]
             distance_type = setting_fields[3] if len(setting_fields) > 3 else "mahalanobis"
             assert solver in ("svd", "lsqr")
             assert distance_type in ("mahalanobis", "euclidean")
@@ -256,15 +256,7 @@ if args.mode in ["test", "both"]:
             gda = LinearDiscriminantAnalysis(solver=solver, shrinkage=None, store_covariance=True)
             gda.fit(feature_train, y_train_seen)
 
-            if threshold == "auto":
-                feature_valid_seen = get_deep_feature.predict(valid_data[0])
-                valid_unseen_idx = y_valid[~y_valid.isin(y_cols_seen)].index
-                feature_valid_unseen = get_deep_feature.predict(X_valid[valid_unseen_idx])
-                seen_m_dist = confidence(feature_valid_seen, gda.means_, distance_type, gda.covariance_).min(axis=1)
-                unseen_m_dist = confidence(feature_valid_unseen, gda.means_, distance_type, gda.covariance_).min(axis=1)
-                threshold = estimate_best_threshold(seen_m_dist, unseen_m_dist)
-            else:
-                threshold = float(threshold)
+            threshold = float(threshold)
 
             y_pred = pd.Series(gda.predict(feature_test))
             gda_result = confidence(feature_test, gda.means_, distance_type, gda.covariance_)
@@ -282,18 +274,10 @@ if args.mode in ["test", "both"]:
             cm = confusion_matrix(test_data[1], y_pred, classes)
             f, f_seen, f_unseen = get_score(cm)
         elif ood_method == "msp":
-            threshold = setting_fields[1] if len(setting_fields) > 1 else "auto"
+            threshold = setting_fields[1]
             method = 'MSP (LMCL)'
             
-            if threshold == "auto":
-                prob_valid_seen = model.predict(valid_data[0])
-                valid_unseen_idx = y_valid[~y_valid.isin(y_cols_seen)].index
-                prob_valid_unseen = model.predict(X_valid[valid_unseen_idx])
-                seen_conf = prob_valid_seen.max(axis=1) * -1.0
-                unseen_conf = prob_valid_unseen.max(axis=1) * -1.0
-                threshold = -1.0 * estimate_best_threshold(seen_conf, unseen_conf)
-            else:
-                threshold = float(threshold)
+            threshold = float(threshold)
             
             df_seen = pd.DataFrame(y_pred_proba, columns=le.classes_)
             df_seen['unseen'] = 0
